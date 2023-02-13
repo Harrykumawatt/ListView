@@ -1,0 +1,42 @@
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:badges/badges.dart' as badges;
+
+void main() {
+  runApp(MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("List Wheel Scroll View"),
+          centerTitle: true,
+          backgroundColor: Colors.brown,
+        ),
+        body: MyApp(),
+      )));
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListWheelScrollView.useDelegate(
+        itemExtent: 75,
+        childDelegate: ListWheelChildBuilderDelegate(
+          builder: (context, index) {
+            if (index < 0 || index > 11) {
+              return null;
+            }
+            return ListTile(
+              leading: Text(
+                '$index',
+                style: TextStyle(fontSize: 50),
+              ),
+              title: Text('Title $index'),
+              subtitle: Text('Description here'),
+            );
+          },
+        ));
+  }
+}
