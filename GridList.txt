@@ -1,0 +1,44 @@
+import 'package:flutter/material.dart';
+
+
+void main() {
+  runApp(const MyWidget());
+}
+
+class MyWidget extends StatelessWidget {
+  const MyWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text('GridList'),
+          ),
+          body: MyApp(),
+        ));
+  }
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.count(
+        crossAxisCount: 2,
+        children: List.generate(100, (index) {
+          return Center(
+              child: Container(
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey, width: 3.0)),
+            padding: EdgeInsets.all(16.0),
+            child: Text(
+              'Item$index',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+          ));
+        }));
+  }
+}
